@@ -4,7 +4,7 @@ Based on the Bruh Automation sensor hardware and original code. Modified, heavil
 Original code is available at: https://github.com/bruhautomation/ESP-MQTT-JSON-Multisensor
 
 
-To use this code you will need the following dependancies:
+To use this code you will need the following dependancies:sendstate
 
 - Support for the ESP8266 boards.
     - You can add it to the board manager by going to File -> Preference and pasting http://arduino.esp8266.com/stable/package_esp8266com_index.json into the Additional Board Managers URL field.
@@ -240,7 +240,7 @@ void setup_wifi() {
 }
 
 
-bool sendState(char* topic, const char* message, bool retain = true) {
+bool sendState(const char* topic, const char* message, bool retain = true) {
     return client.publish(topic, message, retain);
 }
 
@@ -303,7 +303,7 @@ void unregisterSensors(){
         Serial.println("Failed to unregister LED");
 }
 
-void callback(char* topic, byte* payload, unsigned int length) {
+void callback(char* topic, byte* payload, int length) {
     Serial.print("Message arrived [");
     Serial.print(topic);
     Serial.print("] ");
